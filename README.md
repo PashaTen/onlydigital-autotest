@@ -34,3 +34,6 @@ pip install -r requirements.txt
 
 4.Запустите тесты:
 pytest -v
+
+!Код находится в папке project -> test_footer.py
+
