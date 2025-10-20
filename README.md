@@ -34,32 +34,3 @@ pip install -r requirements.txt
 
 4.Запустите тесты:
 pytest -v
-
-Пример теста
-import pytest
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-
-pages = [
-    "https://only.digital/",
-    "https://only.digital/services/",
-    "https://only.digital/portfolio/",
-    "https://only.digital/contacts/"
-]
-
-@pytest.mark.parametrize("url", pages)
-def test_footer_exists(url):
-    driver = webdriver.Chrome()
-    driver.get(url)
-    driver.maximize_window()
-    try:
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, "footer")))
-        print(f"Футер найден на странице: {url}")
-    except TimeoutException:
-        pytest.fail(f"Футер не найден на странице: {url}")
-    finally:
-        driver.quit()
-
